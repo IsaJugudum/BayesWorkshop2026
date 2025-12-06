@@ -144,7 +144,7 @@ p2 <- p0+
 
 ## I include cowplot:: to demonstrate what package this 
 # comes from. It's not strictly needed because I loaded the package earlier
-cowplot::plot_grid(p1, p2, p0,nrow=1)
+cowplot::plot_grid(p1, p2, pempirical,nrow=1)
 ```
 
 
