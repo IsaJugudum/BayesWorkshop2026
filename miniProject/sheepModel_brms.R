@@ -12,6 +12,7 @@ library(tidyverse)
 library(emmeans)
 library(brms)
 library(posterior)
+library(bayesplot)
 
 # load and set up data ----------
 data("ilri.sheep")
@@ -120,9 +121,16 @@ pdraws <- posterior::as_draws_df(modelfit)
 ## you can draw trace plots like this:
 plot(pdraws$b_Intercept)
 
-# you can also visualize posterior density
-plot(density(pdraws$b_Intercept))
-plot(hist(pdraws$b_Intercept))
+## plot of slopes:
+bayesplot::mcmc_trace(pdraws, pars_regex = "b")
+
+# plot of sigmas
+mcmc_trace(pdraws, pars = c("sd_year_Intercept","sigma"))
+
+# histograms:
+mcmc_hist(pdraws) # draws all at once if you don't sepcify pars
+
+
 # This shows trace plots and density plots 
 # for all parameters
 plot(modelfit)
